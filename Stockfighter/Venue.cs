@@ -34,6 +34,9 @@ namespace Stockfighter
             {
                 var response = await client.Get<StocksResponse>($"venues/{Symbol}/stocks");
 
+                if (response.ok == false)
+                    throw new System.Exception($"Got ok == false while getting stocks from {Symbol}");
+
                 foreach (var stock in response.symbols)
                     stock.Venue = Symbol;
 
