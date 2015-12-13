@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using Stockfighter.Helpers;
 
 namespace Stockfighter
@@ -28,6 +25,19 @@ namespace Stockfighter
                 {
                     return false;
                 }
+            }
+        }
+
+        public async Task<Stock[]> GetStocks()
+        {
+            using (var client = new Client())
+            {
+                var stocks = await client.Get<Stock[]>($"venues/{Symbol}/stocks");
+
+                foreach (var stock in stocks)
+                    stock.Venue = Symbol;
+
+                return stocks;
             }
         }
 
