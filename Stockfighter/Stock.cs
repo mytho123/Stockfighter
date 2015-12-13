@@ -7,6 +7,10 @@ namespace Stockfighter
 {
     public class Stock
     {
+        protected Stock()
+        {
+        }
+
         public Stock(string venue, string symbol)
         {
             Venue = venue;
