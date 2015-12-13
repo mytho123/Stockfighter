@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json;
 using System.Threading.Tasks;
 using Stockfighter.Helpers;
+using System;
 
 namespace Stockfighter
 {
@@ -23,7 +24,29 @@ namespace Stockfighter
         {
             using (var client = new Client())
             {
-                return await client.Get<Orderbook>($"venues/{Venue}/stocks/{Symbol}").ConfigureAwait(false);
+                var orderbook = await client.Get<Orderbook>($"venues/{Venue}/stocks/{Symbol}").ConfigureAwait(false);
+
+                if (!orderbook.IsOk)
+                {
+                    throw new Exception($"Got ok == false while getting orderbook of {Symbol} at {Venue}.");
+                }
+
+                return orderbook;
+            }
+        }
+
+        public async Task<Quote> GetQuote()
+        {
+            using (var client = new Client())
+            {
+                var quote = await client.Get<Quote>($"venues/{Venue}/stocks/{Symbol}/quote").ConfigureAwait(false);
+
+                if (!quote.IsOk)
+                {
+                    throw new Exception($"Got ok == false while getting quote of {Symbol} at {Venue}.");
+                }
+
+                return quote;
             }
         }
 
@@ -55,6 +78,42 @@ namespace Stockfighter
                 [JsonProperty("isBuy")]
                 public bool IsBuy { get; set; }
             }
+        }
+
+        public class Quote
+        {
+            [JsonProperty("ok")]
+            public bool IsOk { get; set; }
+
+            [JsonProperty("venue")]
+            public string Venue { get; set; }
+            [JsonProperty("symbol")]
+            public string Symbol { get; set; }
+
+            [JsonProperty("bid")]
+            public int BidInCents { get; set; }
+            [JsonProperty("ask")]
+            public int AskInCents { get; set; }
+
+            [JsonProperty("bidSize")]
+            public int BidSize { get; set; }
+            [JsonProperty("askSize")]
+            public int AskSize { get; set; }
+
+            [JsonProperty("bidDepth")]
+            public int BidDepth { get; set; }
+            [JsonProperty("askDepth")]
+            public int AskDepth { get; set; }
+
+            [JsonProperty("last")]
+            public int LastTradePriceInCents { get; set; }
+            [JsonProperty("lastSize")]
+            public int LastTradeSize { get; set; }
+
+            [JsonProperty("lastTrade")]
+            public string LastTradeTimestamp { get; set; }
+            [JsonProperty("quoteTime")]
+            public string QuoteTimestamp { get; set; }
         }
     }
 }
