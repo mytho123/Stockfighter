@@ -32,12 +32,12 @@ namespace Stockfighter
         {
             using (var client = new Client())
             {
-                var stocks = await client.Get<Stock[]>($"venues/{Symbol}/stocks");
+                var response = await client.Get<StocksResponse>($"venues/{Symbol}/stocks");
 
-                foreach (var stock in stocks)
+                foreach (var stock in response.symbols)
                     stock.Venue = Symbol;
 
-                return stocks;
+                return response.symbols;
             }
         }
 
@@ -46,6 +46,12 @@ namespace Stockfighter
         {
             public bool ok { get; set; }
             public string venue { get; set; }
+        }
+
+        private class StocksResponse
+        {
+            public bool ok { get; set; }
+            public Stock[] symbols { get; set; }
         }
     }
 }
