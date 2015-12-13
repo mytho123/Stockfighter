@@ -1,4 +1,6 @@
 ﻿using Newtonsoft.Json;
+using System.Threading.Tasks;
+using Stockfighter.Helpers;
 
 namespace Stockfighter
 {
@@ -16,5 +18,13 @@ namespace Stockfighter
         public string Symbol { get; set; }
 
         public string Venue { get; set; }
+
+        public async Task<Orderbook> GetOrderbook()
+        {
+            using (var client = new Client())
+            {
+                return await client.Get<Orderbook>($"venues/{Venue}/stocks/{Symbol}").ConfigureAwait(false);
+            }
+        }
     }
 }
