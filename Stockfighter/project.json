@@ -6,18 +6,19 @@
   "projectUrl": "https://github.com/leddt/Stockfighter",
   "licenseUrl": "https://raw.githubusercontent.com/leddt/Stockfighter/master/LICENSE",
   "frameworks": {
+    "dnx451": {},
     "dotnet5.4": {
       "dependencies": {
         "Microsoft.CSharp": "4.0.1-beta-23516",
         "System.Collections": "4.0.11-beta-23516",
         "System.Linq": "4.0.1-beta-23516",
         "System.Runtime": "4.0.21-beta-23516",
-        "System.Threading": "4.0.11-beta-23516",
-        "System.Net.Http": "4.0.1-beta-23516"
+        "System.Threading": "4.0.11-beta-23516"
       }
     }
   },
   "dependencies": {
-    "Newtonsoft.Json": "6.0.6"
+    "Newtonsoft.Json": "7.0.1",
+    "System.Net.Http": "4.0.1-beta-23516"
   }
 }
