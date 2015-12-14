@@ -10,10 +10,24 @@ namespace Stockfighter.Helpers
     {
         private const string baseUrl = "https://api.stockfighter.io/ob/api/";
         private HttpClient client = new HttpClient();
+        private string apiKey;
+
+        public Client() { }
+        public Client(string apiKey)
+        {
+            this.apiKey = apiKey;
+        }
 
         public async Task<T> Get<T>(string url)
         {
-            var response = await client.GetAsync(Combine(baseUrl, url)).ConfigureAwait(false);
+            var request = new HttpRequestMessage(HttpMethod.Get, Combine(baseUrl, url));
+
+            if (!string.IsNullOrWhiteSpace(apiKey))
+            {
+                request.Headers.Add("X-Starfighter-Authorization", apiKey);
+            }
+
+            var response = await client.SendAsync(request).ConfigureAwait(false);
 
             response.EnsureSuccessStatusCode();
 
