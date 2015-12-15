@@ -17,7 +17,7 @@ var stocks = await venue.GetStocks();
 ```
 
 ### Get a stock's quote and orderbook
-```
+```c#
 var stock = new Stock("TESTEX", "FOOBAR");
 
 var quote = await stock.GetQuote();
@@ -25,7 +25,7 @@ var orderbook = await stock.GetOrderbook();
 ```
 
 ### Place a bid for 10 stocks of FOOBAR at 15$
-```
+```c#
 var account = new Account("TESTEX", "EXB123456", "your-api-key");
 
 // Defaults to a limit order. You can add a 4th parameter to specify the order type.
