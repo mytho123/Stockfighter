@@ -1,5 +1,6 @@
 ﻿using System.Threading.Tasks;
 using Stockfighter.Helpers;
+using Stockfighter.HttpModels;
 
 namespace Stockfighter
 {
@@ -18,7 +19,7 @@ namespace Stockfighter
             {
                 try
                 {
-                    var response = await client.Get<Heartbeat>($"venues/{Symbol}/heartbeat").ConfigureAwait(false);
+                    var response = await client.Get<VenueHeartbeat>($"venues/{Symbol}/heartbeat").ConfigureAwait(false);
                     return response.ok;
                 }
                 catch 
@@ -42,19 +43,6 @@ namespace Stockfighter
 
                 return response.symbols;
             }
-        }
-
-
-        private class Heartbeat
-        {
-            public bool ok { get; set; }
-            public string venue { get; set; }
-        }
-
-        private class StocksResponse
-        {
-            public bool ok { get; set; }
-            public Stock[] symbols { get; set; }
         }
     }
 }
