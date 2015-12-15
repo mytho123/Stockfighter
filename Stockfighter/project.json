@@ -1,24 +1,18 @@
 {
-  "version": "0.4.0-*",
+  "version": "0.5.0-*",
   "description": "Stockfighter Client Library",
   "authors": [ "David Thibault" ],
   "tags": [ "stockfighter" ],
   "projectUrl": "https://github.com/leddt/Stockfighter",
   "licenseUrl": "https://raw.githubusercontent.com/leddt/Stockfighter/master/LICENSE",
   "frameworks": {
-    "net45": { },
-    "dotnet5.4": {
-      "dependencies": {
-        "Microsoft.CSharp": "4.0.1-beta-23516",
-        "System.Runtime": "4.0.21-beta-23516"
-      }
-    }
+    "net45": { }
   },
   "dependencies": {
     "Newtonsoft.Json": "7.0.1",
-    "System.Net.Http": "4.0.1-beta-23516",
-    "System.Collections": "4.0.11-beta-23516",
-    "System.Linq": "4.0.1-beta-23516",
-    "System.Threading": "4.0.11-beta-23516"
+    "System.Net.Http": "4.0.0",
+    "System.Collections": "4.0.0",
+    "System.Linq": "4.0.0",
+    "System.Threading": "4.0.0"
   }
 }
