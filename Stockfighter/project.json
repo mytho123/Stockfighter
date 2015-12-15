@@ -1,12 +1,12 @@
 {
-  "version": "0.3.0-*",
+  "version": "0.4.0-*",
   "description": "Stockfighter Client Library",
   "authors": [ "David Thibault" ],
   "tags": [ "stockfighter" ],
   "projectUrl": "https://github.com/leddt/Stockfighter",
   "licenseUrl": "https://raw.githubusercontent.com/leddt/Stockfighter/master/LICENSE",
   "frameworks": {
-    "dnx451": {},
+    "net45": { },
     "dotnet5.4": {
       "dependencies": {
         "Microsoft.CSharp": "4.0.1-beta-23516",
