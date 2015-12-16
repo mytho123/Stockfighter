@@ -31,3 +31,14 @@ var account = new Account("TESTEX", "EXB123456", "your-api-key");
 // Defaults to a limit order. You can add a 4th parameter to specify the order type.
 var order = await account.Buy("FOOBAR", 1500, 10);
 ```
+
+### Receive updated quotes for a stock in realtime
+```c#
+// You can omit the third parameter to receive updates for all stocks
+var tape = new TickerTape("EXB123456", "TESTEX", "FOOBAR");
+tape.QuoteReceived += (o, quote) => HandleNewQuote(quote);
+tape.Start();
+
+// Later...
+tape.Stop(); // OR tape.Dispose();
+```
