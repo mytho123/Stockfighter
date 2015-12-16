@@ -42,3 +42,14 @@ tape.Start();
 // Later...
 tape.Stop(); // OR tape.Dispose();
 ```
+
+### Receive realtime notifications of order fills
+```c#
+// You can omit the third parameter to receive updates for orders of any stock
+var feed = new OrderFeed("EXB123456", "TESTEX", "FOOBAR");
+feed.OrderReceived += (o, order) => HandleOrderUpdate(order);
+feed.Start();
+
+// Later...
+feed.Stop(); // OR feed.Dispose();
+```
