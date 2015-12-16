@@ -63,6 +63,7 @@
   <ItemGroup>
     <Compile Include="AccountTests.cs" />
     <Compile Include="Config.cs" />
+    <Compile Include="OrderFeedTest.cs" />
     <Compile Include="StockTests.cs" />
     <Compile Include="TickerTapeTests.cs" />
     <Compile Include="VenueTests.cs" />
