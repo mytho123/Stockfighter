@@ -2,6 +2,10 @@
 My stab at a .NET stockfighter client. Based on the docs at https://starfighter.readme.io
 
 ## Installation
+I'm using a pre-release version of the WebSocketSharp package. You may need to install it manually before installing the Stockfighter package:  
+`Install-Package WebSocketSharp -Pre`
+
+You should then be able to run:  
 `Install-Package Stockfighter`
 
 ## Usage
