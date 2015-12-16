@@ -13,7 +13,7 @@ namespace Tests
         [TestMethod]
         public async Task CanGetVenueHeartbeat()
         {
-            var venue = new Venue("TESTEX");
+            var venue = new Venue(Config.Venue);
             var isUp = await venue.IsUp();
 
             Assert.IsTrue(isUp);
@@ -22,10 +22,10 @@ namespace Tests
         [TestMethod]
         public async Task CanGetVenueStocks()
         {
-            var venue = new Venue("TESTEX");
+            var venue = new Venue(Config.Venue);
             var stocks = await venue.GetStocks();
 
-            Assert.AreEqual("FOOBAR", stocks[0].Symbol);
+            Assert.AreEqual(Config.Stock, stocks[0].Symbol);
         }
     }
 }

@@ -40,9 +40,13 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Stockfighter">
-      <HintPath>..\artifacts\bin\Stockfighter\Debug\dnx451\Stockfighter.dll</HintPath>
+      <HintPath>..\artifacts\bin\Stockfighter\Debug\net45\Stockfighter.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="websocket-sharp, Version=1.0.2.36589, Culture=neutral, PublicKeyToken=5660b08a1845a91e, processorArchitecture=MSIL">
+      <HintPath>..\packages\WebSocketSharp.1.0.3-rc9\lib\websocket-sharp.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
   </ItemGroup>
   <Choose>
     <When Condition="('$(VisualStudioVersion)' == '10.0' or '$(VisualStudioVersion)' == '') and '$(TargetFrameworkVersion)' == 'v3.5'">
@@ -58,7 +62,9 @@
   </Choose>
   <ItemGroup>
     <Compile Include="AccountTests.cs" />
+    <Compile Include="Config.cs" />
     <Compile Include="StockTests.cs" />
+    <Compile Include="TickerTapeTests.cs" />
     <Compile Include="VenueTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

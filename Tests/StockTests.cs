@@ -16,7 +16,7 @@ namespace Tests
         [TestMethod]
         public async Task CanGetStockQuote()
         {
-            var stock = new Stock("TESTEX", "FOOBAR");
+            var stock = new Stock(Config.Venue, Config.Stock);
             var quote = await stock.GetQuote();
 
             Assert.IsNotNull(quote);
@@ -25,7 +25,7 @@ namespace Tests
         [TestMethod]
         public async Task CanGetStockOrderbook()
         {
-            var stock = new Stock("TESTEX", "FOOBAR");
+            var stock = new Stock(Config.Venue, Config.Stock);
             var book = await stock.GetOrderbook();
 
             Assert.IsNotNull(book);
