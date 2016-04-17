@@ -12,7 +12,7 @@ namespace Stockfighter
 
         private WebSocket socket;
 
-        public EventHandler<Order> OrderReceived;
+        public EventHandler<OrderMessage> OrderReceived;
         public EventHandler Started;
         public EventHandler Stopped;
         public EventHandler<string> ErrorOccured;
@@ -38,13 +38,16 @@ namespace Stockfighter
 
             socket = new WebSocket(url);
             socket.OnMessage += Socket_OnMessage;
-            socket.OnOpen += (o, e) => {
+            socket.OnOpen += (o, e) =>
+            {
                 if (Started != null) Started(this, EventArgs.Empty);
             };
-            socket.OnClose += (o, e) => {
+            socket.OnClose += (o, e) =>
+            {
                 if (Stopped != null) Stopped(this, EventArgs.Empty);
             };
-            socket.OnError += (o, e) => {
+            socket.OnError += (o, e) =>
+            {
                 if (ErrorOccured != null) ErrorOccured(this, e.Message);
             };
             socket.Connect();
@@ -63,20 +66,14 @@ namespace Stockfighter
             if (e.Type == Opcode.Text)
             {
                 var message = JsonConvert.DeserializeObject<OrderMessage>(e.Data);
-                if (message != null && message.order != null && OrderReceived != null)
-                    OrderReceived(this, message.order);
+                if (message != null && OrderReceived != null)
+                    OrderReceived(this, message);
             }
         }
 
         public void Dispose()
         {
             Stop();
-        }
-
-        private class OrderMessage
-        {
-            public bool ok { get; set; }
-            public Order order { get; set; }
         }
     }
 }
