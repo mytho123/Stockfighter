@@ -1,7 +1,7 @@
 ﻿using Newtonsoft.Json;
-using System.Threading.Tasks;
 using Stockfighter.Helpers;
 using System;
+using System.Threading.Tasks;
 
 namespace Stockfighter
 {
@@ -19,6 +19,7 @@ namespace Stockfighter
 
         [JsonProperty("name")]
         public string Name { get; set; }
+
         [JsonProperty("symbol")]
         public string Symbol { get; set; }
 
@@ -43,7 +44,7 @@ namespace Stockfighter
         {
             using (var client = new Client())
             {
-                var quote = await client.Get<Quote>(Account.ApiUrl,  $"venues/{Venue}/stocks/{Symbol}/quote").ConfigureAwait(false);
+                var quote = await client.Get<Quote>(Account.ApiUrl, $"venues/{Venue}/stocks/{Symbol}/quote").ConfigureAwait(false);
 
                 if (!quote.IsOk)
                 {
@@ -54,7 +55,6 @@ namespace Stockfighter
             }
         }
 
-
         public class Orderbook
         {
             [JsonProperty("ok")]
@@ -62,11 +62,13 @@ namespace Stockfighter
 
             [JsonProperty("venue")]
             public string Venue { get; set; }
+
             [JsonProperty("symbol")]
             public string Symbol { get; set; }
 
             [JsonProperty("bids")]
             public Order[] Bids { get; set; }
+
             [JsonProperty("asks")]
             public Order[] Asks { get; set; }
 
@@ -77,8 +79,10 @@ namespace Stockfighter
             {
                 [JsonProperty("price")]
                 public int PriceInCents { get; set; }
+
                 [JsonProperty("qty")]
                 public int Quantity { get; set; }
+
                 [JsonProperty("isBuy")]
                 public bool IsBuy { get; set; }
             }
@@ -91,33 +95,39 @@ namespace Stockfighter
 
             [JsonProperty("venue")]
             public string Venue { get; set; }
+
             [JsonProperty("symbol")]
             public string Symbol { get; set; }
 
             [JsonProperty("bid")]
             public int BidInCents { get; set; }
+
             [JsonProperty("ask")]
             public int AskInCents { get; set; }
 
             [JsonProperty("bidSize")]
             public int BidSize { get; set; }
+
             [JsonProperty("askSize")]
             public int AskSize { get; set; }
 
             [JsonProperty("bidDepth")]
             public int BidDepth { get; set; }
+
             [JsonProperty("askDepth")]
             public int AskDepth { get; set; }
 
             [JsonProperty("last")]
             public int LastTradePriceInCents { get; set; }
+
             [JsonProperty("lastSize")]
             public int LastTradeSize { get; set; }
 
             [JsonProperty("lastTrade")]
-            public string LastTradeTimestamp { get; set; }
+            public DateTime LastTradeTimestamp { get; set; }
+
             [JsonProperty("quoteTime")]
-            public string QuoteTimestamp { get; set; }
+            public DateTime QuoteTimestamp { get; set; }
         }
     }
 }

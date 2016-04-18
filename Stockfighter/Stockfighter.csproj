@@ -48,7 +48,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="GM.cs" />
+    <Compile Include="GameMaster.cs" />
     <Compile Include="Account.cs" />
     <Compile Include="Helpers\Client.cs" />
     <Compile Include="HttpModels\NewOrderRequest.cs" />

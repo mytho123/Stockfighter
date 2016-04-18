@@ -1,16 +1,16 @@
-﻿using System;
-using System.Threading.Tasks;
-using Stockfighter.Helpers;
+﻿using Stockfighter.Helpers;
 using Stockfighter.HttpModels;
+using System;
+using System.Threading.Tasks;
 
 namespace Stockfighter
 {
-    public class GM
+    public class GameMaster
     {
         private const string gmUrl = "https://www.stockfighter.io/gm/";
         private const string uiUrl = "https://www.stockfighter.io/ui/levels";
 
-        public GM(string apiKey)
+        public GameMaster(string apiKey)
         {
             this.ApiKey = apiKey;
         }
