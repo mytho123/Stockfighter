@@ -28,7 +28,7 @@ namespace Stockfighter
         {
             using (var client = new Client())
             {
-                var orderbook = await client.Get<Orderbook>($"venues/{Venue}/stocks/{Symbol}").ConfigureAwait(false);
+                var orderbook = await client.Get<Orderbook>(Account.ApiUrl, $"venues/{Venue}/stocks/{Symbol}").ConfigureAwait(false);
 
                 if (!orderbook.IsOk)
                 {
@@ -43,7 +43,7 @@ namespace Stockfighter
         {
             using (var client = new Client())
             {
-                var quote = await client.Get<Quote>($"venues/{Venue}/stocks/{Symbol}/quote").ConfigureAwait(false);
+                var quote = await client.Get<Quote>(Account.ApiUrl,  $"venues/{Venue}/stocks/{Symbol}/quote").ConfigureAwait(false);
 
                 if (!quote.IsOk)
                 {

@@ -48,10 +48,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="GM.cs" />
     <Compile Include="Account.cs" />
     <Compile Include="Helpers\Client.cs" />
     <Compile Include="HttpModels\NewOrderRequest.cs" />
     <Compile Include="HttpModels\OrderListResponse.cs" />
+    <Compile Include="HttpModels\LevelResponse.cs" />
     <Compile Include="HttpModels\OrderResponse.cs" />
     <Compile Include="HttpModels\StocksResponse.cs" />
     <Compile Include="HttpModels\VenueHeartbeat.cs" />

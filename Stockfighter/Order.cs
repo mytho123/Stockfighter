@@ -51,7 +51,7 @@ namespace Stockfighter
         {
             using (var client = new Client(ApiKey))
             {
-                var response = await client.Delete<OrderResponse>($"venues/{Venue}/stocks/{Symbol}/orders/{Id}").ConfigureAwait(false);
+                var response = await client.Delete<OrderResponse>(Stockfighter.Account.ApiUrl, $"venues/{Venue}/stocks/{Symbol}/orders/{Id}").ConfigureAwait(false);
 
                 if (!response.IsOk)
                 {

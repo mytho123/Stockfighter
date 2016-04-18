@@ -19,7 +19,7 @@ namespace Stockfighter
             {
                 try
                 {
-                    var response = await client.Get<VenueHeartbeat>($"venues/{Symbol}/heartbeat").ConfigureAwait(false);
+                    var response = await client.Get<VenueHeartbeat>(Account.ApiUrl, $"venues/{Symbol}/heartbeat").ConfigureAwait(false);
                     return response.ok;
                 }
                 catch 
@@ -33,7 +33,7 @@ namespace Stockfighter
         {
             using (var client = new Client())
             {
-                var response = await client.Get<StocksResponse>($"venues/{Symbol}/stocks").ConfigureAwait(false);
+                var response = await client.Get<StocksResponse>(Account.ApiUrl, $"venues/{Symbol}/stocks").ConfigureAwait(false);
 
                 if (response.ok == false)
                     throw new System.Exception($"Got ok == false while getting stocks from {Symbol}");

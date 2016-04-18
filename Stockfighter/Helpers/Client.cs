@@ -3,13 +3,13 @@ using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
+using System.Diagnostics;
 
 namespace Stockfighter.Helpers
 {
     public class Client : IDisposable
     {
         private const string authHeader = "X-Starfighter-Authorization";
-        private const string baseUrl = "https://api.stockfighter.io/ob/api/";
         private HttpClient client = new HttpClient();
         private string apiKey;
 
@@ -19,9 +19,10 @@ namespace Stockfighter.Helpers
             this.apiKey = apiKey;
         }
 
-        public async Task<T> Get<T>(string url)
+        public async Task<T> Get<T>(string baseUrl, string url)
         {
             var request = new HttpRequestMessage(HttpMethod.Get, Combine(baseUrl, url));
+            Debug.WriteLine($"GET {request.RequestUri}");
 
             AddAuthHeader(request);
 
@@ -34,9 +35,10 @@ namespace Stockfighter.Helpers
             return JsonConvert.DeserializeObject<T>(stringContent);
         }
 
-        public async Task<T> Post<T>(string url, object body)
+        public async Task<T> Post<T>(string baseUrl, string url, object body)
         {
             var request = new HttpRequestMessage(HttpMethod.Post, Combine(baseUrl, url));
+            Debug.WriteLine($"POST {request.RequestUri}");
 
             AddAuthHeader(request);
 
@@ -51,9 +53,10 @@ namespace Stockfighter.Helpers
             return JsonConvert.DeserializeObject<T>(stringContent);
         }
 
-        public async Task<T> Delete<T>(string url)
+        public async Task<T> Delete<T>(string baseUrl, string url)
         {
             var request = new HttpRequestMessage(HttpMethod.Delete, Combine(baseUrl, url));
+            Debug.WriteLine($"DELETE {request.RequestUri}");
 
             AddAuthHeader(request);
 

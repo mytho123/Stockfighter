@@ -7,6 +7,8 @@ namespace Stockfighter
 {
     public class Account
     {
+        public const string ApiUrl = "https://api.stockfighter.io/ob/api/";
+
         public string Venue { get; set; }
         public string AccountId { get; set; }
         public string ApiKey { get; set; }
@@ -33,7 +35,7 @@ namespace Stockfighter
                     OrderType = type
                 };
 
-                var response = await client.Post<OrderResponse>($"venues/{Venue}/stocks/{stock}/orders", body).ConfigureAwait(false);
+                var response = await client.Post<OrderResponse>(ApiUrl, $"venues/{Venue}/stocks/{stock}/orders", body).ConfigureAwait(false);
 
                 if (!response.IsOk)
                 {
@@ -61,7 +63,7 @@ namespace Stockfighter
                     OrderType = type
                 };
 
-                var response = await client.Post<OrderResponse>($"venues/{Venue}/stocks/{stock}/orders", body).ConfigureAwait(false);
+                var response = await client.Post<OrderResponse>(ApiUrl, $"venues/{Venue}/stocks/{stock}/orders", body).ConfigureAwait(false);
 
                 if (!response.IsOk)
                 {
@@ -78,7 +80,7 @@ namespace Stockfighter
         {
             using (var client = new Client(ApiKey))
             {
-                var response = await client.Get<OrderResponse>($"venues/{Venue}/stocks/{stock}/orders/{id}").ConfigureAwait(false);
+                var response = await client.Get<OrderResponse>(ApiUrl, $"venues/{Venue}/stocks/{stock}/orders/{id}").ConfigureAwait(false);
 
                 if (!response.IsOk)
                 {
@@ -95,7 +97,7 @@ namespace Stockfighter
         {
             using (var client = new Client(ApiKey))
             {
-                var response = await client.Get<OrderListResponse>($"venues/{Venue}/accounts/{AccountId}/orders").ConfigureAwait(false);
+                var response = await client.Get<OrderListResponse>(ApiUrl, $"venues/{Venue}/accounts/{AccountId}/orders").ConfigureAwait(false);
 
                 if (!response.IsOk)
                 {
@@ -113,7 +115,7 @@ namespace Stockfighter
         {
             using (var client = new Client(ApiKey))
             {
-                var response = await client.Get<OrderListResponse>($"venues/{Venue}/accounts/{AccountId}/stocks/{stock}/orders").ConfigureAwait(false);
+                var response = await client.Get<OrderListResponse>(ApiUrl, $"venues/{Venue}/accounts/{AccountId}/stocks/{stock}/orders").ConfigureAwait(false);
 
                 if (!response.IsOk)
                 {
