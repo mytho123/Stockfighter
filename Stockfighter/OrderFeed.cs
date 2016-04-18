@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 using System;
+using System.Net;
 using WebSocketSharp;
 
 namespace Stockfighter
@@ -37,6 +38,16 @@ namespace Stockfighter
                 url += $"/stocks/{stock}";
 
             socket = new WebSocket(url);
+
+            var uri = new Uri(url);
+            var proxy = WebRequest.DefaultWebProxy;
+            if (proxy != null)
+            {
+                var proxyUri = proxy.GetProxy(uri);
+                var credentials = proxy.Credentials?.GetCredential(proxyUri, "auth");
+                socket.SetProxy(proxyUri.ToString(), credentials?.UserName, credentials?.Password);
+            }
+
             socket.OnMessage += Socket_OnMessage;
             socket.OnOpen += (o, e) =>
             {
